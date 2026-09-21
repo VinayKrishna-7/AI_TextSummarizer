@@ -189,6 +189,73 @@ body {
   color: var(--text-muted);
 }
 
+/* Format Selection Pills */
+.format-selection-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.format-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.format-pills {
+  display: inline-flex;
+  background-color: var(--secondary-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 3px;
+  gap: 4px;
+}
+
+.format-pill-label {
+  cursor: pointer;
+  position: relative;
+  display: inline-flex;
+}
+
+.format-radio {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.format-pill-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 4px;
+  color: var(--text-muted);
+  transition: background-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
+}
+
+.format-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.format-radio:checked + .format-pill-btn {
+  background-color: var(--card-bg);
+  color: var(--primary-color);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.format-radio:focus-visible + .format-pill-btn {
+  outline: 2px solid var(--border-focus);
+  outline-offset: 1px;
+}
+
 /* Action Row & Buttons */
 .action-row {
   display: flex;
@@ -320,5 +387,11 @@ body {
 
   .primary-btn {
     width: 100%;
+  }
+
+  .format-selection-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
   }
 }

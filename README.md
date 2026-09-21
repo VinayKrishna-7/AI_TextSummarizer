@@ -1,11 +1,11 @@
 # AI Text Summarizer
 
-A simple, clean web application that turns long text into clear, concise bullet-point summaries using AI.
+A simple, clean web application that turns long text into clear, concise summaries using AI.
 
 ## Features
 
 * Paste or type text to summarize
-* Accurate bullet-point summary generation
+* Choose output format: **Bullet Points** or **Paragraph**
 * One-click copy to clipboard
 * Real-time character counter
 * Dark / Light mode toggle

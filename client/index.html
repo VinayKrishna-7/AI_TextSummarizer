@@ -40,6 +40,25 @@
           </div>
         </div>
 
+        <!-- Summary Format Selection -->
+        <div class="format-selection-group">
+          <label class="format-label">Format:</label>
+          <div class="format-pills" role="radiogroup" aria-label="Summary Format">
+            <label class="format-pill-label">
+              <input type="radio" name="summary-format" value="bullets" checked class="format-radio">
+              <span class="format-pill-btn">
+                <span class="format-icon" aria-hidden="true">•</span> Bullet Points
+              </span>
+            </label>
+            <label class="format-pill-label">
+              <input type="radio" name="summary-format" value="paragraph" class="format-radio">
+              <span class="format-pill-btn">
+                <span class="format-icon" aria-hidden="true">¶</span> Paragraph
+              </span>
+            </label>
+          </div>
+        </div>
+
         <div class="action-row">
           <button type="submit" id="summarize-btn" class="primary-btn">
             <span class="btn-text">Summarize</span>

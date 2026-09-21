@@ -28,7 +28,7 @@ app.use(express.static(clientPath));
 // Summarize API endpoint
 app.post('/api/summarize', async (req, res) => {
   try {
-    const { text } = req.body;
+    const { text, format } = req.body;
 
     // Validate presence and content of text
     if (!text || typeof text !== 'string' || text.trim().length === 0) {
@@ -52,14 +52,19 @@ app.post('/api/summarize', async (req, res) => {
 
     const modelName = process.env.OPENAI_MODEL || 'gpt-4o-mini';
 
+    // Choose prompt based on user's preferred format: 'paragraph' or 'bullets'
+    const isParagraph = format === 'paragraph';
+    const systemPrompt = isParagraph
+      ? 'You are an expert text summarization assistant. Summarize the user\'s text into clear, readable, and concise prose. Preserve all essential facts, main ideas, and context without inventing any information. Return only the summary in cohesive prose without bullet points or conversational filler.'
+      : 'You are an expert text summarization assistant. Summarize the user\'s text into clear, accurate, and informative bullet points. Extract all key facts, takeaways, and essential context without inventing any information. Format each key takeaway as a bullet point starting with "• ". Return only the bullet points without any introductory or concluding conversational filler.';
+
     // Request summary from OpenAI (or OpenAI-compatible provider)
     const response = await openai.chat.completions.create({
       model: modelName,
       messages: [
         {
           role: 'system',
-          content:
-            'You are an expert text summarization assistant. Summarize the user\'s text into clear, accurate, and informative bullet points. Extract all key facts, takeaways, and essential context without inventing any information. Format each key takeaway as a bullet point starting with "• ". Return only the bullet points without any introductory or concluding conversational filler.'
+          content: systemPrompt
         },
         {
           role: 'user',

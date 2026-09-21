@@ -46,11 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
     errorMessage.hidden = true;
   }
 
+  const formatRadios = document.querySelectorAll('input[name="summary-format"]');
+
   // Set loading state
   function setLoading(loading) {
     isSubmitting = loading;
     summarizeBtn.disabled = loading;
     textInput.disabled = loading;
+    formatRadios.forEach(radio => radio.disabled = loading);
     btnText.textContent = loading ? 'Summarizing...' : 'Summarize';
   }
 
@@ -62,6 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const rawText = textInput.value;
     const trimmedText = rawText.trim();
+    const selectedFormat = form.querySelector('input[name="summary-format"]:checked')?.value || 'bullets';
 
     // Frontend validation: empty or whitespace-only check
     if (!trimmedText) {
@@ -79,7 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ text: rawText })
+        body: JSON.stringify({
+          text: rawText,
+          format: selectedFormat
+        })
       });
 
       // Safely parse JSON response

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Text Summarizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-top">
+        <h1 class="app-title">AI Text Summarizer</h1>
+        <button type="button" id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+          <span id="theme-icon" class="theme-icon" aria-hidden="true">🌙</span>
+          <span id="theme-text" class="theme-text">Dark</span>
+        </button>
+      </div>
+      <p class="app-subtitle">Turn long text into a clear, concise summary.</p>
+    </header>
+
+    <!-- Main Card -->
+    <main class="card">
+      <form id="summarize-form" novalidate>
+        <div class="form-group">
+          <div class="label-row">
+            <label for="text-input" class="form-label">Your Text</label>
+          </div>
+          <textarea
+            id="text-input"
+            name="text"
+            class="text-input"
+            rows="8"
+            placeholder="Paste an article, notes, paragraph, or any text here..."
+            spellcheck="true"
+          ></textarea>
+          <div class="counter-row">
+            <span id="char-counter" class="char-counter">0 characters</span>
+          </div>
+        </div>
+
+        <div class="action-row">
+          <button type="submit" id="summarize-btn" class="primary-btn">
+            <span class="btn-text">Summarize</span>
+          </button>
+        </div>
+      </form>
+
+      <!-- Error / Notification Message -->
+      <div id="error-message" class="error-message" role="alert" aria-live="polite" hidden></div>
+
+      <!-- Result Section -->
+      <section id="result-section" class="result-section" aria-live="polite" hidden>
+        <div class="result-header">
+          <h2 class="result-title">Summary</h2>
+          <button type="button" id="copy-btn" class="secondary-btn" aria-label="Copy summary to clipboard">
+            Copy
+          </button>
+        </div>
+        <div class="result-content-container">
+          <p id="summary-output" class="summary-output"></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
